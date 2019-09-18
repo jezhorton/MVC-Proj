@@ -1,0 +1,51 @@
+﻿@model WebAppMVC2017Version.GameInfo
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>GameInfo</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.GameName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.GameName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.GameName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.GameGenre, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.GameGenre, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.GameGenre, "Spooky Scary Validation", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class=" form-group">
+        <asp:DropDownList ID="ddlGenre" runat="server">
+            <asp:ListItem>Please choose a genre</asp:ListItem>
+            <asp:ListItem>Shooter</asp:ListItem>
+            <asp:ListItem>Strategy</asp:ListItem>
+            <asp:ListItem>Adventure</asp:ListItem>
+            <asp:ListItem>MMO</asp:ListItem>
+        </asp:DropDownList>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
